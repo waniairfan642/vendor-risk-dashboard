@@ -13,23 +13,39 @@ st.set_page_config(
 # --------------------------------------------------
 # LOAD DATA
 # --------------------------------------------------
+# --------------------------------------------------
+# LOAD DATA
+# --------------------------------------------------
 import os
 
 file_path = "data/vendor_risk_analysis.csv"
 
 if not os.path.exists(file_path):
-    st.error("Data file not found. Check file path.")
+    st.error(f"Data file not found. Ensure '{file_path}' exists in your GitHub repo.")
     st.stop()
 
-full_df = pd.read_csv(file_path)
-full_df.columns = full_df.columns.str.strip()
+# Use 'sep=None' to automatically detect if your CSV uses commas or semicolons
+try:
+    full_df = pd.read_csv(file_path, sep=None, engine='python')
+    
+    # Remove any invisible spaces from column names
+    full_df.columns = full_df.columns.str.strip()
 
-vendor_df = full_df.copy()
-full_df["Risk_Score"] = pd.to_numeric(full_df["Risk_Score"], errors='coerce')
-full_df["Avg_Defect_Rate"] = pd.to_numeric(full_df["Avg_Defect_Rate"], errors='coerce')
-portfolio_avg_risk = full_df["Risk_Score"].mean()
-avg_defect_rate = full_df["Avg_Defect_Rate"].mean()
+    # Create a copy for filtering
+    vendor_df = full_df.copy()
 
+    # Force these columns to be numbers so math works
+    full_df["Risk_Score"] = pd.to_numeric(full_df["Risk_Score"], errors='coerce')
+    full_df["Avg_Defect_Rate"] = pd.to_numeric(full_df["Avg_Defect_Rate"], errors='coerce')
+
+    # Calculate the means
+    portfolio_avg_risk = full_df["Risk_Score"].mean()
+    avg_defect_rate = full_df["Avg_Defect_Rate"].mean()
+
+except KeyError as e:
+    st.error(f"Could not find column: {e}")
+    st.write("The columns found in your file are:", full_df.columns.tolist())
+    st.stop()
 # --------------------------------------------------
 # SIDEBAR
 # --------------------------------------------------
