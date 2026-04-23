@@ -25,7 +25,8 @@ full_df = pd.read_csv(file_path)
 full_df.columns = full_df.columns.str.strip()
 
 vendor_df = full_df.copy()
-
+full_df["Risk_Score"] = pd.to_numeric(full_df["Risk_Score"], errors='coerce')
+full_df["Avg_Defect_Rate"] = pd.to_numeric(full_df["Avg_Defect_Rate"], errors='coerce')
 portfolio_avg_risk = full_df["Risk_Score"].mean()
 avg_defect_rate = full_df["Avg_Defect_Rate"].mean()
 
