@@ -138,9 +138,9 @@ fig_rev = px.scatter(
     full_df,
     x="Risk_Score",
     y="Total_Revenue",
-    size="Cancellation_Rate_%",   # 🔥 adds 3rd dimension
+    size="Cancellation_Rate_%",  
     color="Risk_Category",
-    text="Supplier",              # 🔥 shows vendor names
+    text="Supplier",             
     hover_name="Supplier",
     color_discrete_map={
         "High Risk": "red",
@@ -184,7 +184,7 @@ st.plotly_chart(fig_rev, use_container_width=True, key="rev_analysis")
 st.info("""
 High-risk high-revenue vendors (top-right quadrant) are critical and require monitoring.
 Low-risk high-revenue vendors (top-left quadrant) are ideal partners.
-Low-revenue high-risk vendors (bottom-right) may be candidates for replacement.
+Low-revenue medium-risk vendors (bottom-right) may be candidates for replacement.
 """)
 # --------------------------------------------------
 # DISTRIBUTION
