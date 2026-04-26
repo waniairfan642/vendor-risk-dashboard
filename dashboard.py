@@ -138,9 +138,9 @@ fig_rev = px.scatter(
     full_df,
     x="Risk_Score",
     y="Total_Revenue",
-    size="Cancellation_Rate_%",  
+    size="Cancellation_Rate_%",   # 🔥 adds 3rd dimension
     color="Risk_Category",
-    text="Supplier",             
+    text="Supplier",              # 🔥 shows vendor names
     hover_name="Supplier",
     color_discrete_map={
         "High Risk": "red",
