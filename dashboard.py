@@ -133,6 +133,7 @@ st.divider()
 # --------------------------------------------------
 # RISK VS REVENUE
 # --------------------------------------------------
+st.subheader("Risk VS Revenue")
 fig_rev = px.scatter(
     full_df,
     x="Risk_Score",
@@ -146,7 +147,6 @@ fig_rev = px.scatter(
         "Medium Risk": "orange",
         "Low Risk": "green"
     },
-    title="Risk vs Revenue Analysis"
 )
 
 # 🔥 Add average reference lines
