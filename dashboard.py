@@ -184,7 +184,7 @@ st.plotly_chart(fig_rev, use_container_width=True, key="rev_analysis")
 st.info("""
 High-risk high-revenue vendors (top-right quadrant) are critical and require monitoring.
 Low-risk high-revenue vendors (top-left quadrant) are ideal partners.
-Low-revenue medium-risk vendors (bottom-right) may be candidates for replacement.
+Low-revenue high-risk vendors (bottom-right) may be candidates for replacement.
 """)
 # --------------------------------------------------
 # DISTRIBUTION
